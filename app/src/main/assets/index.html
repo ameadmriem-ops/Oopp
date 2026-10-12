@@ -12,13 +12,226 @@ body{background:#000;color:#fff;font-family:Arial,sans-serif;-webkit-tap-highlig
 .logo{font-size:24px;font-weight:900}.logo b{color:#e50914}.logo span{color:#fff}
 .hero{margin-top:55px;height:200px;background:linear-gradient(to bottom,rgba(0,0,0,.2),#000),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80') center/cover;display:flex;justify-content:center;align-items:center}
 .hero h1{font-size:38px;font-weight:900}
-.movies-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:16px 14px;justify-items:center}
-.movie-card{text-align:center;position:relative;background:#111;border-radius:16px;padding:10px;overflow:hidden;width:100%;max-width:170px;min-width:0}
-.poster{width:140px;height:140px;object-fit:contain;background:#1e1e1e;border-radius:14px;display:block;border:1px solid #222;margin:0 auto}
-.favorite-btn{position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;border:none;background:rgba(0,0,0,.6);color:#fff;z-index:2;cursor:pointer}
-.favorite-btn.active{color:#e50914}
-.movie-card h3{font-size:14px;font-weight:800;margin-top:8px;min-height:36px;line-height:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
-.movie-card p{font-size:12px;color:#777;margin-top:4px}
+/* ================= Unified Vertical Poster Card (Matches Reference Image) ================= */
+.movie-card {
+  text-align: right;
+  direction: rtl;
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: 135px;
+  min-width: 135px;
+  flex: 0 0 135px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+.movie-card:hover {
+  transform: translateY(-2px);
+}
+.movie-card:focus {
+  outline: none;
+}
+.movie-card:focus 
+.favorite-btn {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  z-index: 3;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: transform 0.15s ease, color 0.15s ease;
+  backdrop-filter: blur(4px);
+}
+.favorite-btn:active {
+  transform: scale(0.9);
+}
+.favorite-btn.active {
+  color: #e50914 !important;
+}
+
+.poster-wrapper {
+  outline: 3px solid #e50914 !important;
+  box-shadow: 0 0 16px rgba(229, 9, 20, 0.7);
+}
+
+.poster-wrapper {
+  width: 100%;
+  height: 195px;
+  aspect-ratio: 2 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.movie-card:hover .poster-wrapper {
+  border-color: rgba(229, 9, 20, 0.6);
+  box-shadow: 0 6px 18px rgba(229, 9, 20, 0.35);
+}
+.poster-wrapper img.poster {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 13px !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #181818 !important;
+  transition: transform 0.25s ease;
+}
+.movie-card:hover .poster-wrapper img.poster {
+  transform: scale(1.04);
+}
+
+/* Red Pill Type Badge (Bottom-Right, exactly as in reference photo: الفيلم / المسلسل / مترجم) */
+.poster-red-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #e50914;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 10px;
+  border-radius: 10px;
+  line-height: 1.2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  pointer-events: none;
+  max-width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Version Badge (Bottom-Left if present) */
+.poster-version-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(14, 28, 40, 0.88);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* Title under poster */
+.movie-card h3 {
+  font-size: 13px !important;
+  font-weight: bold !important;
+  color: #fff !important;
+  margin: 6px 0 2px 0 !important;
+  min-height: auto !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-align: right !important;
+  direction: rtl !important;
+  display: block !important;
+}
+
+/* Subtitle: Year • Type under title */
+.movie-card p {
+  font-size: 11px !important;
+  color: #888 !important;
+  margin: 0 !important;
+  text-align: right !important;
+  direction: rtl !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+}
+
+/* Horizontal scrollable row container */
+.cards-scroll-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 0 16px 14px 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  direction: rtl;
+}
+.cards-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Category section titles & headers */
+.category-sub-section {
+  margin-bottom: 20px;
+}
+.category-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 8px 16px;
+  direction: rtl;
+}
+.category-sub-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.category-sub-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+.category-sub-count {
+  font-size: 11px;
+  color: #888;
+  background: #181818;
+  border: 1px solid #282828;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Fallback grid container */
+.movies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 10px;
+  padding: 10px 14px;
+  justify-content: flex-start;
+  direction: rtl;
+}
+.movies-grid .movie-card {
+  flex: 0 0 calc(33.333% - 7px);
+  width: calc(33.333% - 7px);
+  min-width: 105px;
+  max-width: 140px;
+}
+.movies-grid .poster-wrapper {
+  height: auto;
+  aspect-ratio: 2 / 3;
+}
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:600px;height:78px;background:#080808;border-top:1px solid #1a1a1a;display:flex;justify-content:space-around;align-items:center;z-index:40}
 .bottom-nav button{background:none;border:none;color:#555;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:22px;padding:6px 12px;border-radius:10px;border:2px solid transparent;cursor:pointer}
 .bottom-nav button span{font-size:11px}
@@ -135,10 +348,11 @@ body.light-mode{background:#f4f5f7;color:#111}
 body.light-mode .top-bar{background:#ffffff;border-bottom:1px solid #e2e5ec;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
 body.light-mode .hero{background:linear-gradient(to bottom,rgba(255,255,255,.15),#f4f5f7),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80') center/cover}
 body.light-mode .hero h1{color:#111;text-shadow:0 2px 12px rgba(255,255,255,0.9)}
-body.light-mode .movie-card{background:#ffffff;border:1px solid #e2e5ec;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+body.light-mode .movie-card{background:transparent !important;border:none !important;box-shadow:none !important}
+body.light-mode .poster-wrapper{background:#eef0f4;border:1px solid #dcdfe6;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
 body.light-mode .movie-card h3{color:#111}
-body.light-mode .movie-card p{color:#555}
-body.light-mode .poster{background:#eef0f4;border:1px solid #dcdfe6}
+body.light-mode .movie-card p{color:#666}
+body.light-mode .poster{background:#eef0f4;border:none}
 body.light-mode .bottom-nav{background:#ffffff;border-top:1px solid #e2e5ec;box-shadow:0 -2px 10px rgba(0,0,0,0.04)}
 body.light-mode .bottom-nav button{color:#666}
 body.light-mode .bottom-nav button.active{color:#e50914;border-color:#e50914}
@@ -2944,14 +3158,67 @@ window.setActiveNav=(p)=>{
   let n = document.getElementById("nav-" + target) || document.getElementById("nav-" + p);
   if(n) n.classList.add("active");
 };
-window.createCard=(item)=>{
-  let fav=window.isFavorite(item.id);
-  let click=(window.currentUserRole==="ADMIN"&&window.selectEpisodeMode)?`renderAddEpisodeForm('${item.firebaseId}')`:(window.currentUserRole==="ADMIN"&&window.deleteMode)?`askDeleteMovie('${item.firebaseId}')`:`openDetails('${item.firebaseId}')`;
-  let del=(window.currentUserRole==="ADMIN"&&window.deleteMode)?`<button tabindex="0" style="position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;border:none;background:#e50914;color:#fff;z-index:3" onclick="event.stopPropagation();askDeleteMovie('${item.firebaseId}')">✕</button>`:"";
-  let editPosterBtn=(window.currentUserRole==="ADMIN")?`<button type="button" tabindex="0" style="width:100%;margin-top:8px;background:#1a2a3a;color:#00d2ff;border:1px solid #2a4a6a;padding:6px 8px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px" onclick="event.stopPropagation();openEditPosterModal('${item.firebaseId}')">🖼️ تعديل البوستر</button>`:"";
+window.createCard = (item) => {
+  if (!item) return "";
+  let fav = window.isFavorite ? window.isFavorite(item.id) : false;
+  let click = (window.currentUserRole === "ADMIN" && window.selectEpisodeMode)
+    ? `renderAddEpisodeForm('${item.firebaseId}')`
+    : (window.currentUserRole === "ADMIN" && window.deleteMode)
+      ? `askDeleteMovie('${item.firebaseId}')`
+      : `openDetails('${item.firebaseId}')`;
+
+  let del = (window.currentUserRole === "ADMIN" && window.deleteMode)
+    ? `<button tabindex="0" style="position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;border:none;background:#e50914;color:#fff;font-size:12px;font-weight:bold;z-index:4;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.6)" onclick="event.stopPropagation();askDeleteMovie('${item.firebaseId}')">✕</button>`
+    : "";
+
+  let editPosterBtn = (window.currentUserRole === "ADMIN" && !window.selectEpisodeMode && !window.deleteMode)
+    ? `<button type="button" tabindex="0" style="width:100%;margin-top:6px;background:#1a2a3a;color:#00d2ff;border:1px solid #2a4a6a;padding:5px 6px;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px" onclick="event.stopPropagation();openEditPosterModal('${item.firebaseId}')">🖼️ تعديل البوستر</button>`
+    : "";
+
   let isAnimation = item.type === "animation" || item.type === "arabic" || item.type === "sports";
-  let categoryLabel = window.translateCategoryLabel(item.category, isAnimation);
-  return`<div class="movie-card" tabindex="0"><button tabindex="0" class="favorite-btn ${fav?"active":""}" onclick="event.stopPropagation();toggleFavorite('${item.id}')">♥</button>${del}<div onclick="${click}"><img class="poster" data-poster-fid="${item.firebaseId}" src="${item.poster}" loading="lazy" decoding="async"><h3>${item.title}</h3><p>${item.year} • ${categoryLabel}</p></div>${editPosterBtn}</div>`;
+  let cat = (item.category || "").trim();
+
+  // Determine red pill badge text exactly matching reference image (الفيلم / مسلسل / الأنميشن / مترجم)
+  let redBadge = "مسلسل";
+  let metaCategory = "مسلسل";
+  if (cat === "فلم" || cat === "فيلم") {
+    redBadge = "الفيلم";
+    metaCategory = "فيلم";
+  } else if (cat) {
+    redBadge = cat;
+    metaCategory = cat;
+  } else if (isAnimation) {
+    redBadge = "الأنميشن";
+    metaCategory = "أنميشن";
+  } else {
+    redBadge = "أنمي";
+    metaCategory = "أنمي";
+  }
+
+  // Version status (مترجم / مدبلج)
+  let version = (window.getItemVersion ? window.getItemVersion(item) : (item.version || "")).trim();
+  let versionBadgeHtml = "";
+  if (version && version !== redBadge) {
+    versionBadgeHtml = `<span class="poster-version-badge">${window.escapeDescHtml(version)}</span>`;
+  }
+
+  let year = item.year || 2024;
+  let metaText = `${year} • ${metaCategory}`;
+
+  return `
+    <div class="movie-card" tabindex="0" onclick="${click}">
+      <div class="poster-wrapper">
+        <button tabindex="0" class="favorite-btn ${fav ? "active" : ""}" style="position:absolute;top:6px;left:6px;z-index:3;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,0.5);border:none;color:${fav ? '#e50914' : '#fff'};font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center" onclick="event.stopPropagation();toggleFavorite('${item.id}')" title="المفضلة">♥</button>
+        ${del}
+        <img class="poster" data-poster-fid="${item.firebaseId}" src="${item.poster || 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=400'}" alt="${window.escapeDescHtml(item.title || '')}" loading="lazy" decoding="async">
+        <span class="poster-red-badge">${window.escapeDescHtml(redBadge)}</span>
+        ${versionBadgeHtml}
+      </div>
+      <h3 title="${window.escapeDescHtml(item.title || '')}">${window.escapeDescHtml(item.title || '')}</h3>
+      <p>${window.escapeDescHtml(metaText)}</p>
+      ${editPosterBtn}
+    </div>
+  `;
 };
 window.getOfficialAnimeList = function() {
   let list = window.allContent.filter(x => {
@@ -3182,15 +3449,23 @@ window.renderHome = () => {
       </div>
     </div>
 
-    <!-- 5. All Content Grid -->
-    <div class="home-section" style="padding-top:10px">
+    <!-- 5. Explore All Content Section (Horizontal scrollable rows matching reference image) -->
+    <div class="home-section" style="padding-top:6px">
       <div class="home-section-header">
         <div class="home-section-title-wrap">
           <span class="home-section-icon">📺</span>
           <h3 class="home-section-title">استكشف كافة الأعمال</h3>
         </div>
+        <button type="button" class="home-section-more-btn" onclick="showPage('anime')">عرض المزيد ←</button>
       </div>
-      <div class="movies-grid">${hourlyItems.map(createCard).join("")}</div>
+      <div class="cards-scroll-row">
+        ${hourlyItems.slice(0, 15).map(createCard).join("")}
+      </div>
+      ${hourlyItems.length > 15 ? `
+        <div class="cards-scroll-row" style="margin-top:4px">
+          ${hourlyItems.slice(15, 30).map(createCard).join("")}
+        </div>
+      ` : ''}
     </div>
   `;
 
@@ -3222,9 +3497,9 @@ window.renderCategory=(type)=>{
     </div>
   ` : "";
 
-  let contentGridHtml = items.length > 0 
-    ? `<div class="movies-grid">${items.map(createCard).join("")}</div>`
-    : `
+  let contentGridHtml = "";
+  if (items.length === 0) {
+    contentGridHtml = `
       <div style="text-align:center;padding:50px 16px;color:#888">
         <div style="font-size:44px;margin-bottom:12px">🌪️</div>
         <div style="font-size:16px;font-weight:bold;color:#fff">لا توجد أعمال تطابق الفلاتر المحددة</div>
@@ -3232,6 +3507,76 @@ window.renderCategory=(type)=>{
         <button onclick="window.clearFilters('${type}')" style="background:#e50914;color:#fff;border:none;padding:10px 22px;border-radius:20px;font-weight:bold;cursor:pointer">إزالة الفلاتر وعرض الكل</button>
       </div>
     `;
+  } else if (activeFilterCount > 0) {
+    // When filters are active, show filtered results organized in smooth horizontal rows
+    let row1 = items.slice(0, 15);
+    let row2 = items.slice(15, 30);
+    let row3 = items.slice(30);
+    contentGridHtml = `
+      <div class="category-sub-section">
+        <div class="category-sub-header">
+          <div class="category-sub-title-wrap">
+            <span style="font-size:17px">🎯</span>
+            <h3 class="category-sub-title">النتائج المطابقة للتصفية</h3>
+          </div>
+          <span class="category-sub-count">${items.length} عمل</span>
+        </div>
+        <div class="cards-scroll-row">${row1.map(createCard).join("")}</div>
+        ${row2.length > 0 ? `<div class="cards-scroll-row" style="margin-top:6px">${row2.map(createCard).join("")}</div>` : ''}
+        ${row3.length > 0 ? `<div class="cards-scroll-row" style="margin-top:6px">${row3.map(createCard).join("")}</div>` : ''}
+      </div>
+    `;
+  } else {
+    // When browsing the category normally, split into organized horizontal rows: Movies, Series, and All
+    let seriesList = items.filter(x => (x.category || "").trim() === "مسلسل");
+    let moviesList = items.filter(x => (x.category || "").trim() === "فلم" || (x.category || "").trim() === "فيلم");
+    let otherList = items.filter(x => (x.category || "").trim() !== "مسلسل" && (x.category || "").trim() !== "فلم" && (x.category || "").trim() !== "فيلم");
+
+    let seriesSectionHtml = seriesList.length > 0 ? `
+      <div class="category-sub-section">
+        <div class="category-sub-header">
+          <div class="category-sub-title-wrap">
+            <span style="font-size:17px">📺</span>
+            <h3 class="category-sub-title">${isAnimation ? 'مسلسلات الأنيميشن' : 'مسلسلات الأنمي'}</h3>
+          </div>
+          <span class="category-sub-count">${seriesList.length} عمل</span>
+        </div>
+        <div class="cards-scroll-row">${seriesList.map(createCard).join("")}</div>
+      </div>
+    ` : '';
+
+    let moviesSectionHtml = moviesList.length > 0 ? `
+      <div class="category-sub-section">
+        <div class="category-sub-header">
+          <div class="category-sub-title-wrap">
+            <span style="font-size:17px">🎬</span>
+            <h3 class="category-sub-title">${isAnimation ? 'أفلام الأنيميشن' : 'أفلام الأنمي'}</h3>
+          </div>
+          <span class="category-sub-count">${moviesList.length} عمل</span>
+        </div>
+        <div class="cards-scroll-row">${moviesList.map(createCard).join("")}</div>
+      </div>
+    ` : '';
+
+    // All / other items section
+    let allRow1 = items.slice(0, 15);
+    let allRow2 = items.slice(15, 30);
+    let allSectionHtml = `
+      <div class="category-sub-section">
+        <div class="category-sub-header">
+          <div class="category-sub-title-wrap">
+            <span style="font-size:17px">✨</span>
+            <h3 class="category-sub-title">${isAnimation ? 'كافة أعمال الأنيميشن' : 'كافة أعمال الأنمي'}</h3>
+          </div>
+          <span class="category-sub-count">${items.length} عمل</span>
+        </div>
+        <div class="cards-scroll-row">${allRow1.map(createCard).join("")}</div>
+        ${allRow2.length > 0 ? `<div class="cards-scroll-row" style="margin-top:6px">${allRow2.map(createCard).join("")}</div>` : ''}
+      </div>
+    `;
+
+    contentGridHtml = seriesSectionHtml + moviesSectionHtml + allSectionHtml;
+  }
 
   main.innerHTML=`
     <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px 4px 14px;margin-top:55px">
