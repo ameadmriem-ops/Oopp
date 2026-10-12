@@ -270,6 +270,258 @@ body.light-mode .auth-input{background:#f7f8fa;color:#111;border:1.5px solid #cf
   box-shadow: 0 2px 10px rgba(229,9,20,0.4);
 }
 
+
+/* ================= Home Page Slider & Horizontal Sections ================= */
+.featured-slider-section {
+  position: relative;
+  margin: 62px 14px 18px 14px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.75);
+  touch-action: pan-y;
+  user-select: none;
+}
+.hero-slider-container {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
+  transform: scale(0.97);
+  cursor: pointer;
+}
+.hero-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  z-index: 2;
+}
+.hero-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 42%, rgba(0,0,0,0.15) 75%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 16px 26px 16px;
+  direction: rtl;
+  text-align: right;
+}
+.hero-slide-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e50914;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  align-self: flex-start;
+  box-shadow: 0 2px 6px rgba(229,9,20,0.4);
+}
+.hero-slide-title {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+.hero-slide-meta {
+  font-size: 12px;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+.hero-slide-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  color: #000;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 12px;
+  border-radius: 14px;
+  margin-top: 6px;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.hero-slider-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+  pointer-events: auto;
+}
+.hero-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.hero-dot.active {
+  width: 22px;
+  border-radius: 10px;
+  background: #e50914;
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.7);
+}
+
+/* Home Vertical Sections */
+.home-section {
+  margin-bottom: 22px;
+}
+.home-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 8px 16px;
+  direction: rtl;
+}
+.home-section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.home-section-icon {
+  font-size: 17px;
+}
+.home-section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+.home-section-more-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s ease;
+}
+.home-section-more-btn:hover {
+  color: #e50914;
+}
+.home-cards-scroll-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 0 16px 8px 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  direction: rtl;
+}
+.home-cards-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+.home-content-card {
+  flex: 0 0 135px;
+  width: 135px;
+  position: relative;
+  cursor: pointer;
+  text-align: right;
+  direction: rtl;
+}
+.home-card-poster-wrap {
+  width: 100%;
+  height: 190px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #141414;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid #222;
+}
+.home-card-poster-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+.home-content-card:hover .home-card-poster-wrap img {
+  transform: scale(1.04);
+}
+.home-card-badge {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(229, 9, 20, 0.92);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-card-rank-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  color: #000;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.home-card-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  margin: 6px 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-card-sub {
+  font-size: 11px;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 </style>
 <script type="importmap">{"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"}}</script>
 </head>
@@ -845,6 +1097,101 @@ window.isAdminUnlocked = false;
 window.deleteMode = false;
 window.selectEpisodeMode = false;
 window.allContent = [];
+
+
+/* ================= Home Slider & Views System ================= */
+window.heroSlideIndex = 0;
+window.heroSlideTotal = 0;
+window.heroSlideTimer = null;
+
+window.goToHeroSlide = function(idx) {
+  if (window.heroSlideTotal <= 0) return;
+  if (idx < 0) idx = window.heroSlideTotal - 1;
+  if (idx >= window.heroSlideTotal) idx = 0;
+  window.heroSlideIndex = idx;
+
+  const slides = document.querySelectorAll(".hero-slide");
+  slides.forEach((s, i) => {
+    if (i === idx) s.classList.add("active");
+    else s.classList.remove("active");
+  });
+
+  const dots = document.querySelectorAll(".hero-dot");
+  dots.forEach((d, i) => {
+    if (i === idx) d.classList.add("active");
+    else d.classList.remove("active");
+  });
+};
+
+window.nextHeroSlide = function() {
+  window.goToHeroSlide(window.heroSlideIndex + 1);
+};
+
+window.prevHeroSlide = function() {
+  window.goToHeroSlide(window.heroSlideIndex - 1);
+};
+
+window.startHeroSlideAutoPlay = function() {
+  if (window.heroSlideTimer) clearInterval(window.heroSlideTimer);
+  window.heroSlideTimer = setInterval(() => {
+    if (currentPage === "home") {
+      window.nextHeroSlide();
+    }
+  }, 4500);
+};
+
+window.setupHeroSliderTouch = function() {
+  const container = document.getElementById("heroSliderSection");
+  if (!container) return;
+  let startX = 0;
+  let startY = 0;
+  let isMoving = false;
+
+  container.addEventListener("touchstart", (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isMoving = true;
+    if (window.heroSlideTimer) clearInterval(window.heroSlideTimer);
+  }, { passive: true });
+
+  container.addEventListener("touchmove", (e) => {
+    if (!isMoving || !e.touches || e.touches.length === 0) return;
+  }, { passive: true });
+
+  container.addEventListener("touchend", (e) => {
+    if (!isMoving) return;
+    isMoving = false;
+    let diffX = (e.changedTouches && e.changedTouches[0]) ? (e.changedTouches[0].clientX - startX) : 0;
+    if (diffX > 40) {
+      window.prevHeroSlide();
+    } else if (diffX < -40) {
+      window.nextHeroSlide();
+    }
+    window.startHeroSlideAutoPlay();
+  }, { passive: true });
+};
+
+window.getItemViews = function(item) {
+  if (!item) return 0;
+  let baseViews = parseInt(item.views || item.viewCount || item.viewsCount || 0, 10) || 0;
+  let localViews = parseInt(localStorage.getItem(`views_${item.firebaseId}`) || "0", 10) || 0;
+  let watchedBonus = 0;
+  let eps = Array.isArray(item.episodes) ? item.episodes : [];
+  for (let i = 0; i < eps.length; i++) {
+    if (localStorage.getItem(`watched_${item.firebaseId}_${i}`) === "true") {
+      watchedBonus += 15;
+    }
+  }
+  let favBonus = (window.favorites || []).includes(item.id) ? 20 : 0;
+  return baseViews + localViews + watchedBonus + favBonus;
+};
+
+window.incrementItemViews = function(fid) {
+  if (!fid) return;
+  let current = parseInt(localStorage.getItem(`views_${fid}`) || "0", 10) || 0;
+  localStorage.setItem(`views_${fid}`, (current + 1).toString());
+};
 
 /* ================= ALL GENRES & FILTER SYSTEM ================= */
 window.ALL_GENRES = [
@@ -2654,10 +3001,202 @@ setInterval(() => {
   }
 }, 30000);
 
-window.renderHome=()=>{
-  const hourlyItems = window.getHourlyRotatingAnimes(50);
-  main.innerHTML=`<div class="hero"><h1>BLACK ANIME</h1></div><div class="movies-grid">${hourlyItems.map(createCard).join("")}</div>`;
+window.renderHome = () => {
+  if (window.heroSlideTimer) {
+    clearInterval(window.heroSlideTimer);
+    window.heroSlideTimer = null;
+  }
+
+  const all = window.allContent || [];
+  if (all.length === 0) {
+    main.innerHTML = `
+      <div style="padding-top:80px;text-align:center;padding:100px 20px;color:#888">
+        <div style="font-size:44px;margin-bottom:12px">⏳</div>
+        <div style="font-size:16px;color:#fff;font-weight:bold">جاري تحميل المحتوى...</div>
+      </div>
+    `;
+    setActiveNav("home");
+    return;
+  }
+
+  // 1. Featured Slider Items (up to 6 items with posters)
+  const featuredItems = all.filter(x => Boolean(x.poster)).slice(0, 6);
+  window.heroSlideTotal = featuredItems.length;
+  window.heroSlideIndex = 0;
+
+  const slidesHtml = featuredItems.map((item, idx) => {
+    let isAnimation = item.type === "animation" || item.type === "arabic" || item.type === "sports";
+    let catLabel = item.category || (isAnimation ? "أنميشن" : "مسلسل");
+    return `
+      <div class="hero-slide ${idx === 0 ? 'active' : ''}" onclick="openDetails('${item.firebaseId}')">
+        <img class="hero-slide-img" src="${item.poster}" alt="${window.escapeDescHtml(item.title)}" loading="lazy">
+        <div class="hero-slide-overlay">
+          <span class="hero-slide-tag">${window.escapeDescHtml(catLabel)}</span>
+          <h2 class="hero-slide-title">${window.escapeDescHtml(item.title)}</h2>
+          <div class="hero-slide-meta">
+            <span>📅 ${item.year || 2024}</span>
+            ${item.version ? `<span>• 🎙️ ${item.version}</span>` : ''}
+            ${(item.episodes && item.episodes.length > 0) ? `<span>• 🎬 ${item.episodes.length} حلقة</span>` : ''}
+          </div>
+          <span class="hero-slide-action">▶ تفاصيل ومشاهدة</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const dotsHtml = featuredItems.map((_, idx) => `
+    <span class="hero-dot ${idx === 0 ? 'active' : ''}" onclick="event.stopPropagation();window.goToHeroSlide(${idx})"></span>
+  `).join("");
+
+  // 2. New Episodes Section (items that have episodes)
+  const newEpisodesItems = all.filter(x => Array.isArray(x.episodes) && x.episodes.length > 0).slice(0, 14);
+  const newEpisodesCardsHtml = newEpisodesItems.map(item => {
+    const lastEpIdx = item.episodes.length - 1;
+    const lastEp = item.episodes[lastEpIdx];
+    const epBadge = lastEp ? (lastEp.title || `حلقة ${lastEpIdx + 1}`) : `حلقة ${item.episodes.length}`;
+    let isAnimation = item.type === "animation" || item.type === "arabic" || item.type === "sports";
+    let catLabel = item.category || (isAnimation ? "أنميشن" : "مسلسل");
+    return `
+      <div class="home-content-card" onclick="openDetails('${item.firebaseId}')">
+        <div class="home-card-poster-wrap">
+          <img src="${item.poster}" alt="${window.escapeDescHtml(item.title)}" loading="lazy">
+          <span class="home-card-badge">${window.escapeDescHtml(epBadge)}</span>
+        </div>
+        <div class="home-card-title">${window.escapeDescHtml(item.title)}</div>
+        <div class="home-card-sub">${window.escapeDescHtml(catLabel)} • ${item.year || ""}</div>
+      </div>
+    `;
+  }).join("");
+
+  // 3. Latest Added Content (sorted by creation date newest first)
+  const latestAddedItems = [...all].slice(0, 14);
+  const latestAddedCardsHtml = latestAddedItems.map(item => {
+    let isAnimation = item.type === "animation" || item.type === "arabic" || item.type === "sports";
+    let catLabel = item.category || (isAnimation ? "أنميشن" : "مسلسل");
+    return `
+      <div class="home-content-card" onclick="openDetails('${item.firebaseId}')">
+        <div class="home-card-poster-wrap">
+          <img src="${item.poster}" alt="${window.escapeDescHtml(item.title)}" loading="lazy">
+          <span class="home-card-badge" style="background:rgba(0,180,240,0.92);color:#000;font-weight:900">${item.year || 2024}</span>
+        </div>
+        <div class="home-card-title">${window.escapeDescHtml(item.title)}</div>
+        <div class="home-card-sub">${window.escapeDescHtml(catLabel)} ${item.version ? `• ${item.version}` : ''}</div>
+      </div>
+    `;
+  }).join("");
+
+  // 4. Most Watched (sorted by real views/engagement descending)
+  const mostWatchedItems = [...all].sort((a, b) => {
+    let va = window.getItemViews(a);
+    let vb = window.getItemViews(b);
+    if (vb !== va) return vb - va;
+    return (b.episodes?.length || 0) - (a.episodes?.length || 0);
+  }).slice(0, 14);
+
+  const mostWatchedCardsHtml = mostWatchedItems.map((item, idx) => {
+    let isAnimation = item.type === "animation" || item.type === "arabic" || item.type === "sports";
+    let catLabel = item.category || (isAnimation ? "أنميشن" : "مسلسل");
+    let rankBadgeStyle = "";
+    let rankText = `#${idx + 1}`;
+    if (idx === 0) {
+      rankBadgeStyle = "background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#000";
+      rankText = "1 👑";
+    } else if (idx === 1) {
+      rankBadgeStyle = "background:linear-gradient(135deg,#cbd5e1,#f1f5f9);color:#000";
+      rankText = "2 🥈";
+    } else if (idx === 2) {
+      rankBadgeStyle = "background:linear-gradient(135deg,#ea580c,#f97316);color:#fff";
+      rankText = "3 🥉";
+    } else {
+      rankBadgeStyle = "background:rgba(20,20,20,0.85);color:#fff;border:1px solid #444";
+      rankText = `#${idx + 1}`;
+    }
+
+    return `
+      <div class="home-content-card" onclick="openDetails('${item.firebaseId}')">
+        <div class="home-card-poster-wrap">
+          <img src="${item.poster}" alt="${window.escapeDescHtml(item.title)}" loading="lazy">
+          <span class="home-card-rank-badge" style="${rankBadgeStyle}">${rankText}</span>
+        </div>
+        <div class="home-card-title">${window.escapeDescHtml(item.title)}</div>
+        <div class="home-card-sub">${window.escapeDescHtml(catLabel)} • ${item.year || ""}</div>
+      </div>
+    `;
+  }).join("");
+
+  // 5. Explore Full Library Grid (all items)
+  const hourlyItems = window.getHourlyRotatingAnimes(30);
+
+  main.innerHTML = `
+    <!-- 1. Hero Featured Slider -->
+    <div id="heroSliderSection" class="featured-slider-section">
+      <div class="hero-slider-container">
+        ${slidesHtml}
+      </div>
+      <div class="hero-slider-dots">
+        ${dotsHtml}
+      </div>
+    </div>
+
+    <!-- 2. New Episodes Section -->
+    ${newEpisodesItems.length > 0 ? `
+      <div class="home-section">
+        <div class="home-section-header">
+          <div class="home-section-title-wrap">
+            <span class="home-section-icon">🔥</span>
+            <h3 class="home-section-title">حلقات جديدة</h3>
+          </div>
+          <button type="button" class="home-section-more-btn" onclick="showPage('anime')">عرض الكل ←</button>
+        </div>
+        <div class="home-cards-scroll-row">
+          ${newEpisodesCardsHtml}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- 3. Latest Added Section -->
+    <div class="home-section">
+      <div class="home-section-header">
+        <div class="home-section-title-wrap">
+          <span class="home-section-icon">✨</span>
+          <h3 class="home-section-title">آخر الأعمال المضافة</h3>
+        </div>
+        <button type="button" class="home-section-more-btn" onclick="showPage('anime')">عرض الكل ←</button>
+      </div>
+      <div class="home-cards-scroll-row">
+        ${latestAddedCardsHtml}
+      </div>
+    </div>
+
+    <!-- 4. Most Watched Section -->
+    <div class="home-section">
+      <div class="home-section-header">
+        <div class="home-section-title-wrap">
+          <span class="home-section-icon">👑</span>
+          <h3 class="home-section-title">الأكثر مشاهدة</h3>
+        </div>
+        <button type="button" class="home-section-more-btn" onclick="showPage('anime')">عرض الكل ←</button>
+      </div>
+      <div class="home-cards-scroll-row">
+        ${mostWatchedCardsHtml}
+      </div>
+    </div>
+
+    <!-- 5. All Content Grid -->
+    <div class="home-section" style="padding-top:10px">
+      <div class="home-section-header">
+        <div class="home-section-title-wrap">
+          <span class="home-section-icon">📺</span>
+          <h3 class="home-section-title">استكشف كافة الأعمال</h3>
+        </div>
+      </div>
+      <div class="movies-grid">${hourlyItems.map(createCard).join("")}</div>
+    </div>
+  `;
+
   setActiveNav("home");
+  window.setupHeroSliderTouch();
+  window.startHeroSlideAutoPlay();
 };
 window.renderCategory=(type)=>{
   let isAnimation = type === "animation" || type === "arabic" || type === "sports";
@@ -2841,6 +3380,7 @@ window.toggleContentDescription = function(fid) {
 };
 
 window.openDetails=(fid)=>{
+  window.incrementItemViews(fid);
   let item=getItemByFirebaseId(fid);
   if(!item)return;
   window._lastDetailsFid = fid;
